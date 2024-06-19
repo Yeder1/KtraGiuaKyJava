@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Book List</title>
+    <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1 th:text="${title}"></h1>
+    <table class="table">
+        <tr>
+            <th>Ma NV</th>
+            <th>Ten NV</th>
+            <th>Gioi Tinh</th>
+            <th>Noi Sinh</th>
+            <th>Ten Phong
+            <th>Luong</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="nhanvien : ${nhanviens}">
+            <td th:text="${nhanvien.Ma_NV}"></td>
+            <td th:text="${nhanvien.Ten_NV}"></td>
+            <td th:text="${nhanvien.Phai}"></td>
+            <td th:text="${nhanvien.Noi_Sinh}"></td>
+            <td th:text="${nhanvien.phongban.Ten_Phong}"></td>
+            <td th:text="${nhanvien.Luong}"></td>
+            <td>
+                <a th:href="@{/books/edit/{id}(id=${book.id})}">Edit</a> |
+                <a th:href="@{/books/delete/{id}(id=${book.id})}"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
