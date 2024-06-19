@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add NV</title>
+    <th:block th:replace="Layout :: link-css"></th:block>
+</head>
+<body>
+<div class="container">
+    <h2>Add Nhan Vien</h2>
+    <form th:action="@{/nhanvien/add}" th:object="${nhanvien}" method="post">
+        <div class="form-group">
+            <label for="maNV">Ma Nhan Vien:</label>
+            <input type="text" class="form-control" id="maNV" th:field="*{maNV}" required>
+        </div>
+        <div class="form-group">
+            <label for="tenNV">Ten Nhan Vien:</label>
+            <input type="text" class="form-control" id="tenNV" th:field="*{tenNV}" required>
+        </div>
+        <div class="form-group">
+            <label for="phai">Gioi tinh:</label>
+            <input type="text" class="form-control" id="phai" th:field="*{phai}">
+        </div>
+        <div class="form-group">
+            <label for="noiSinh">Noi sinh:</label>
+            <input type="text" class="form-control" id="noiSinh" th:field="*{noiSinh}">
+        </div>
+        <div class="form-group">
+            <label for="luong">Luong:</label>
+            <input type="number" class="form-control" id="luong" th:field="*{luong}">
+        </div>
+        <div class="form-group">
+            <label for="phongBan.maPhong">Phong Ban:</label>
+            <select class="form-control" id="phongBan.maPhong" th:field="*{phongBan.maPhong}">
+                <option th:each="phongban : ${phongbans}" th:value="${phongban.maPhong}"
+                        th:text="${phongban.tenPhong}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Nhan Vien</button>
+    </form>
+</div>
+</body>
+</html>

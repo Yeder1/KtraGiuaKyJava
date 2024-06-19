@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.print.Book;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NhanVienService {
@@ -21,8 +22,12 @@ public class NhanVienService {
         nhanVienRepository.save(nhanVien);
     }
 
-    public void deleteNV(Long id){
+    public void deleteNV(String id){
         nhanVienRepository.deleteById(id);
+    }
+    public NhanVien getNVById(String id) {
+        Optional<NhanVien> optionalNhanVien = nhanVienRepository.findById(id);
+        return optionalNhanVien.orElse(null);
     }
 
     public void updateNV(NhanVien nhanVien){
